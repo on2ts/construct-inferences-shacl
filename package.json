@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "construct-inferences-shacl",
   "version": "0.0.0-development",
-  "description": "",
+  "description": "Sets of construct queries used to perform inferencing on SHACL constraints",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
   "directories": {
@@ -22,15 +22,21 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/jeswr/construct-inferences-shacl.git"
   },
-  "keywords": [],
+  "keywords": [
+    "SHACL",
+    "CONSTRUCT",
+    "inferencing",
+    "rdf",
+    "owl"
+  ],
   "author": "Jesse Wright <jesse.wright@anu.edu.au>",
   "license": "MIT",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/jeswr/construct-inferences-shacl/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/jeswr/construct-inferences-shacl#readme",
   "devDependencies": {
     "@types/jest": "^26.0.19",
     "@typescript-eslint/eslint-plugin": "^4.12.0",
