@@ -1,0 +1,17 @@
+[{
+  "construct": "?s sh:nodeKind sh:blankNodeOrIRI",
+  "where": "?s a sh:propertyShape ;\n sh:class ?o .\n FILTER ( NOT EXISTS { ?s sh:nodeKind ?o2 } )"
+}, {
+  "construct": "?s sh:nodeKind sh:Literal",
+  "where": "?s a sh:propertyShape ;\n sh:datatype ?o .\nFILTER( NOT EXISTS { ?s sh:nodeKind ?o2 } )"
+}, {
+  
+}"
+  CONSTRUCT {
+    ?s sh:nodeKind sh:Literal
+  } WHERE {
+    ?s a sh:propertyShape ;
+      sh:datatype ?o .
+    FILTER( NOT EXISTS { ?s sh:nodeKind ?o2 } )
+  }"
+]
