@@ -1,7 +1,4 @@
-[{
-  "construct": "?s sh:nodeKind sh:blankNodeOrIRI",
-  "where": "?s a sh:propertyShape ;\n sh:class ?o .\n FILTER ( NOT EXISTS { ?s sh:nodeKind ?o2 } )"
-}, {
-  "construct": "?s sh:nodeKind sh:Literal",
-  "where": "?s a sh:propertyShape ;\n sh:datatype ?o .\nFILTER( NOT EXISTS { ?s sh:nodeKind ?o2 } )"
-}]
+[
+  "PREFIX sh: <http://www.w3.org/ns/shacl#> .\nCONSTRUCT {\n?s sh:nodeKind sh:blankNodeOrIRI\n} WHERE {\n?s a sh:propertyShape ;\n(sh:class) ?o .\nFILTER( NOT EXISTS { ?s sh:nodeKind ?o2 } )\n}\n",
+  "PREFIX sh: <http://www.w3.org/ns/shacl#> .\nCONSTRUCT {\n?s sh:nodeKind sh:Literal\n} WHERE {\n?s a sh:propertyShape ;\n(sh:datatype|sh:languageIn|sh:minExclusive|sh:maxExclusive|sh:minInclusive|sh:maxInclusive|sh:minLength|sh:maxLength|sh:pattern|sh:flags|sh:uniqueLang|sh:lessThan|sh:lessThanOrEquals) ?o .\nFILTER( NOT EXISTS { ?s sh:nodeKind ?o2 } )\n}\n"
+]
