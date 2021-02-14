@@ -1,0 +1,20 @@
+{
+  "blankNodeOrIRI": [
+    "class"
+  ],
+  "Literal": [
+    "datatype",
+    "languageIn",
+    "minExclusive",
+    "maxExclusive",
+    "minInclusive",
+    "maxInclusive",
+    "minLength",
+    "maxLength",
+    "pattern",
+    "flags",
+    "uniqueLang",
+    "lessThan",
+    "lessThanOrEquals"
+  ]
+}
