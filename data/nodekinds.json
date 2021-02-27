@@ -1,5 +1,5 @@
 {
-  "blankNodeOrIRI": [
+  "BlankNodeOrIRI": [
     "class"
   ],
   "Literal": [

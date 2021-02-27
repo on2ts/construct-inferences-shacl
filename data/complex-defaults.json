@@ -1,0 +1,18 @@
+[
+  {
+    "construct": "?s sh:flags ''",
+    "where": " ?s a sh:PropertyShape .\n?s sh:pattern ?o\nFILTER(NOT EXISTS { ?s sh:flags ?o })"
+  },
+  {
+    "construct": "?s sh:qualifiedValueShapesDisjoint false",
+    "where": "?v sh:qualifiedValueShape ?s .\nFILTER(NOT EXISTS { ?s sh:qualifiedValueShapesDisjoint ?o })"
+  },
+  {
+    "construct": "?s sh:qualifiedMinCount 0",
+    "where": "  ?v sh:qualifiedValueShape ?s .\nFILTER(NOT EXISTS { ?s sh:qualifiedMinCount ?o })"
+  },
+  {
+    "construct": "?s sh:ignoredProperties ()",
+    "where": "?s sh:closed true .\nFILTER(NOT EXISTS { ?s sh:ignoredProperties ?o })"
+  }
+]
