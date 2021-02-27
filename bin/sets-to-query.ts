@@ -13,6 +13,10 @@ interface ConstructElem {
 // Converting the construct objects into full sparql queries
 const basePath = path.join(__dirname, '..', 'construct-sets');
 const outPath = path.join(__dirname, '..', 'lib', 'sets');
+try {
+  fs.mkdirSync(outPath);
+// eslint-disable-next-line no-empty
+} catch (e) {}
 
 for (const file of fs.readdirSync(basePath)) {
   const data: ConstructElem[] = JSON.parse(fs.readFileSync(path.join(basePath, file)).toString());
