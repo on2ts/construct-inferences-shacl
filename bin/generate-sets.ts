@@ -5,6 +5,12 @@ import nodeKinds from '../data/nodekinds.json';
 import basicDefaults from '../data/basic-defaults.json';
 import complexDefaults from '../data/complex-defaults.json';
 
+const basePath = path.join(__dirname, '..', 'construct-sets');
+try {
+  fs.mkdirSync(basePath);
+// eslint-disable-next-line no-empty
+} catch (e) {}
+
 const newObj = [];
 
 for (const key in nodeKinds) {
@@ -18,7 +24,7 @@ for (const key in nodeKinds) {
   });
 }
 
-fs.writeFileSync(path.join(__dirname, '..', 'construct-sets', 'nodekind-inferences.json'), JSON.stringify(newObj, null, 2));
+fs.writeFileSync(path.join(basePath, 'nodekind-inferences.json'), JSON.stringify(newObj, null, 2));
 
 const defaults = [...complexDefaults];
 
@@ -31,4 +37,4 @@ for (const defaultClass in basicDefaults) {
   }
 }
 
-fs.writeFileSync(path.join(__dirname, '..', 'construct-sets', 'defaults.json'), JSON.stringify(defaults, null, 2));
+fs.writeFileSync(path.join(basePath, 'defaults.json'), JSON.stringify(defaults, null, 2));

@@ -17,7 +17,7 @@
     "lint:fix": "eslint lib/* __tests__/* --ext .ts --fix",
     "build:sets": "ts-node bin/generate-sets",
     "build:queries": "ts-node bin/sets-to-query",
-    "build": "npm run build:sets && npm run build:queries && tsc",
+    "build": "npm run build:sets && npm run build:queries && npm run lint:fix && tsc",
     "prepare": "npm run build",
     "postinstall": "npm run build",
     "semantic-release": "semantic-release"
