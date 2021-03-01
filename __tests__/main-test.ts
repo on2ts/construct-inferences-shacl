@@ -20,6 +20,29 @@ ex:myShape a sh:NodeShape ;
   ] .
 `);
 
+const andConstraint = parser.parse(`
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+ex:AndShape
+  rdf:type sh:NodeShape ;
+  sh:and (
+      ex:SuperShape
+      [
+        sh:property [
+            sh:path ex:property ;
+            sh:maxCount 1 ;
+          ] ;
+      ]
+    ) ;
+  sh:targetNode ex:InvalidInstance1 ;
+  sh:targetNode ex:InvalidInstance2 ;
+  sh:targetNode ex:ValidInstance1 ;
+.
+`);
+
 describe('Testing with all inferencing sets', () => {
   it('Should infer closed attribute', async () => {
     // Store to hold explicitly loaded triples
@@ -132,6 +155,42 @@ describe('Testing with nodekind inferences only only', () => {
       propertyShape,
       namedNode('http://www.w3.org/ns/shacl#nodeKind'),
       namedNode('http://www.w3.org/ns/shacl#BlankNodeOrIRI'),
+      null,
+    )).toEqual(1);
+  });
+});
+
+describe('Testing propertyShape inferences in logical quantifiers', () => {
+  it('Should have either a property shape or a note shape for each logical quantifier', async () => {
+    // Store to hold explicitly loaded triples
+    const explicit = new Store();
+    // Store to hold implicitly loaded triples
+    const implicit = new Store();
+
+    await inferencer(andConstraint, [], explicit, implicit, owl2rl, SHACLInferences);
+
+    const [andList] = explicit.getObjects(
+      'http://example.org/AndShape',
+      'http://www.w3.org/ns/shacl#and',
+      null,
+    );
+
+    const [restElem] = explicit.getObjects(
+      andList,
+      'http://www.w3.org/1999/02/22-rdf-syntax-ns#rest',
+      null,
+    );
+
+    const [propertyShape] = explicit.getObjects(
+      restElem,
+      'http://www.w3.org/1999/02/22-rdf-syntax-ns#first',
+      null,
+    );
+
+    expect(implicit.countQuads(
+      propertyShape,
+      'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+      namedNode('http://www.w3.org/ns/shacl#PropertyShape'),
       null,
     )).toEqual(1);
   });

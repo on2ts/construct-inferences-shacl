@@ -4,6 +4,7 @@ import path from 'path';
 import nodeKinds from '../data/nodekinds.json';
 import basicDefaults from '../data/basic-defaults.json';
 import complexDefaults from '../data/complex-defaults.json';
+import propertyShapeClassification from '../data/property-shape-classification.json';
 
 const basePath = path.join(__dirname, '..', 'construct-sets');
 try {
@@ -38,3 +39,11 @@ for (const defaultClass in basicDefaults) {
 }
 
 fs.writeFileSync(path.join(basePath, 'defaults.json'), JSON.stringify(defaults, null, 2));
+
+// Each subject ?s is set to be a property shape if not already one
+const propertyShapeClassificaitons = propertyShapeClassification.map((where) => ({
+  construct: '?s a sh:PropertyShape',
+  where: `${where} FILTER( NOT EXISTS { ?s a sh:NodeShape } && NOT EXISTS { ?s a sh:PropertyShape } )`,
+}));
+
+fs.writeFileSync(path.join(basePath, 'property-shape-classification.json'), JSON.stringify(propertyShapeClassificaitons, null, 2));
