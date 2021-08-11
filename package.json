@@ -41,7 +41,7 @@
   "devDependencies": {
     "@rdfjs/data-model": "^1.2.0",
     "@types/deindent": "^0.1.0",
-    "@types/jest": "^26.0.19",
+    "@types/jest": "^27.0.0",
     "@types/n3": "^1.4.4",
     "@types/ramda": "^0.27.38",
     "@typescript-eslint/eslint-plugin": "^4.12.0",
